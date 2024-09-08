@@ -13,41 +13,23 @@ export class AppComponent {
     subject: '',
     content: ''
   };
+  username: string = ''; // Add this field to hold the username
   response: any;
 
-  constructor(private http: HttpClient, private emailService: EmailService) {}
+  constructor(private emailService: EmailService, private http: HttpClient) {}
 
   onSubmit() {
-    const invoiceNumber = 'INV-123456';
-    const invoiceDate = new Date().toLocaleDateString();
-    const recipientName = 'John Doe';
-    const recipientAddress = '123 Elm Street, Springfield';
-    const items = [
-      { description: 'Product 1', quantity: 2, unitPrice: 50, total: 100 },
-      { description: 'Product 2', quantity: 1, unitPrice: 150, total: 150 }
-    ];
-    const totalAmountDue = items.reduce((sum, item) => sum + item.total, 0);
-    const currentYear = new Date().getFullYear();
+    // Fetch the email template
+    this.http.get('assets/email-template.html', { responseType: 'text' }).subscribe(
+      (template: string) => {
+        const verificationLink = 'https://your-domain.com/verify?token=sample-token';
+        const currentYear = new Date().getFullYear();
 
-    // Load the template
-    this.http.get('assets/invoice-template.html', { responseType: 'text' })
-      .subscribe(template => {
-        // Replace placeholders
-        let body = template
-          .replace('{{invoiceNumber}}', invoiceNumber)
-          .replace('{{invoiceDate}}', invoiceDate)
-          .replace('{{recipientName}}', recipientName)
-          .replace('{{recipientAddress}}', recipientAddress)
-          .replace('{{#each items}}', '')
-          .replace('{{/each}}', '')
-          .replace('{{description}}', items.map(item => item.description).join('</td></tr><tr><td>'))
-          .replace('{{quantity}}', items.map(item => item.quantity).join('</td></tr><tr><td>'))
-          .replace('{{unitPrice}}', items.map(item => item.unitPrice).join('</td></tr><tr><td>'))
-          .replace('{{total}}', items.map(item => item.total).join('</td></tr><tr><td>'))
-          .replace('{{totalAmountDue}}', totalAmountDue.toFixed(2))
+        // Replace placeholders in the template
+        this.emailDto.content = template
+          .replace('{{username}}', this.username)
+          .replace('{{verificationLink}}', verificationLink)
           .replace('{{currentYear}}', currentYear.toString());
-
-        this.emailDto.content = body;
 
         // Send the email
         this.emailService.sendEmail(this.emailDto).subscribe(
@@ -58,6 +40,10 @@ export class AppComponent {
             console.error('Error sending email', err);
           }
         );
-      });
+      },
+      (err) => {
+        console.error('Error loading email template', err);
+      }
+    );
   }
 }
