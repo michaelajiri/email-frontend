@@ -10,60 +10,84 @@
             color: #333;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4; /* Background color similar to email verification */
         }
         .container {
             width: 80%;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
-            background: #f4f4f4;
+            background: #fff; /* Background color for the container */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
         .header {
-            background: #007bff;
-            color: #fff;
-            padding: 20px;
             text-align: center;
+            padding: 20px 0;
         }
         .header img {
-            max-width: 150px;
+            max-width: 50px; /* Further reduced logo size */
             height: auto;
+            margin-bottom: 10px;
         }
         .invoice-details {
-            background: #fff;
             padding: 20px;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
         }
         .invoice-details h2 {
             margin-top: 0;
+            color: #007bff;
+        }
+        .invoice-info p {
+            margin: 5px 0;
+            font-size: 0.9em;
         }
         .invoice-details table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
         .invoice-details table, .invoice-details th, .invoice-details td {
             border: 1px solid #ddd;
         }
         .invoice-details th, .invoice-details td {
-            padding: 8px;
+            padding: 12px;
             text-align: left;
+        }
+        .invoice-details th {
+            background-color: #007bff;
+            color: white;
+        }
+        .invoice-details tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .invoice-details tfoot td {
+            background-color: #f4f4f4;
+            font-weight: bold;
         }
         .footer {
             text-align: center;
-            font-size: 0.8em;
+            font-size: 0.9em;
             color: #777;
             padding: 10px 0;
+            margin-top: 20px;
             background: #f4f4f4;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="invoice-details">
+        <div class="header">
+            <img src="https://core-api-storage.s3.amazonaws.com/WM+logo.png" alt="WM Logo">
             <h2>Invoice</h2>
-            <p><strong>Invoice Number:</strong> {{invoiceNumber}}</p>
-            <p><strong>Date:</strong> {{invoiceDate}}</p>
-            <p><strong>Recipient:</strong> {{recipientName}}<br>{{recipientAddress}}</p>
+        </div>
+
+        <div class="invoice-details">
+            <div class="invoice-info">
+                <p><strong>Invoice Number:</strong> {{invoiceNumber}}</p>
+                <p><strong>Date:</strong> {{invoiceDate}}</p>
+                <p><strong>Recipient:</strong> {{recipientName}}<br>{{recipientAddress}}</p>
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -85,12 +109,13 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3" style="text-align: right;"><strong>Total Amount Due:</strong></td>
+                        <td colspan="3" style="text-align: right;">Total Amount Due:</td>
                         <td><strong>${{totalAmountDue}}</strong></td>
                     </tr>
                 </tfoot>
             </table>
         </div>
+
         <div class="footer">
             <p>&copy; {{currentYear}} The Nigeria Development Foundation. All rights reserved.</p>
         </div>
