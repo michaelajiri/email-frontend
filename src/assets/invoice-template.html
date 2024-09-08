@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        .header {
+            background: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            max-width: 150px;
+            height: auto;
+        }
+        .invoice-details {
+            background: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .invoice-details h2 {
+            margin-top: 0;
+        }
+        .invoice-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .invoice-details table, .invoice-details th, .invoice-details td {
+            border: 1px solid #ddd;
+        }
+        .invoice-details th, .invoice-details td {
+            padding: 8px;
+            text-align: left;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8em;
+            color: #777;
+            padding: 10px 0;
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="invoice-details">
+            <h2>Invoice</h2>
+            <p><strong>Invoice Number:</strong> {{invoiceNumber}}</p>
+            <p><strong>Date:</strong> {{invoiceDate}}</p>
+            <p><strong>Recipient:</strong> {{recipientName}}<br>{{recipientAddress}}</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each items}}
+                    <tr>
+                        <td>{{description}}</td>
+                        <td>{{quantity}}</td>
+                        <td>${{unitPrice}}</td>
+                        <td>${{total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" style="text-align: right;"><strong>Total Amount Due:</strong></td>
+                        <td><strong>${{totalAmountDue}}</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="footer">
+            <p>&copy; {{currentYear}} The Nigeria Development Foundation. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
