@@ -1,0 +1,6 @@
+<div class="activation-container">
+    <h2>{{ activationStatus }}</h2>
+
+    <!-- Show activation button if not activated yet -->
+    <button *ngIf="!isActivated && token" (click)="activateUser()">Activate Account</button>
+</div>

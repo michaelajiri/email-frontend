@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Send Activation Email</h2>
+  
+  <form #activationForm="ngForm" (ngSubmit)="sendEmail()">
+      <div class="form-group">
+          <label for="receiverEmail">Receiver Email:</label>
+          <input type="email" id="receiverEmail" name="receiverEmail" [(ngModel)]="receiverEmail" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" name="subject" [(ngModel)]="subject" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+          <label for="htmlContent">HTML Content:</label>
+          <textarea id="htmlContent" name="htmlContent" [(ngModel)]="htmlContent" class="form-control" rows="5" required></textarea>
+      </div>
+
+      <button type="submit" class="btn">Send Activation Email</button>
+  </form>
+</div>
