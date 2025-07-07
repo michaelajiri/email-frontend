@@ -1,0 +1,80 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.invoice-box {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  border: 1px solid #eee;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.company-info h2 {
+  margin: 0;
+  color: #FFC107; /* Yellow */
+}
+
+.invoice-details {
+  text-align: right;
+}
+
+.invoice-details h3 {
+  margin: 0;
+}
+
+.buyer-info {
+  margin-bottom: 2rem;
+}
+
+.buyer-info h4 {
+  margin-bottom: 0.3rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+.summary {
+  text-align: right;
+}
+
+.summary p {
+  margin: 4px 0;
+}
+
+.paid {
+  background: #d4edda;
+  color: #155724;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  border-radius: 4px;
+  font-weight: bold;
+}

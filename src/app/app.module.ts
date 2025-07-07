@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { ActivationComponent } from './pages/activation/activation.component';
 import { ActivationEmailComponent } from './pages/activation-email/activation-email.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PaymentInvoiceComponent } from './pages/payment-invoice/payment-invoice.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ActivationComponent,
-    ActivationEmailComponent
+    ActivationEmailComponent,
+    PaymentInvoiceComponent
   ],
   imports: [
     BrowserModule,

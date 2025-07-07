@@ -1,0 +1,76 @@
+<!-- FORM FIELDS -->
+<div class="form-fields" style="margin-bottom: 20px;">
+  <label><strong>Receiver Email:</strong></label>
+  <input
+    type="email"
+    [(ngModel)]="buyer.email"
+    name="receiverEmail"
+    placeholder="Enter buyer's email"
+    style="width: 100%; padding: 8px; margin-bottom: 10px;"
+    required
+  />
+
+  <label><strong>Email Subject:</strong></label>
+  <input
+    type="text"
+    [(ngModel)]="subject"
+    name="subject"
+    placeholder="Enter subject"
+    style="width: 100%; padding: 8px; margin-bottom: 20px;"
+    required
+  />
+</div>
+
+<!-- INVOICE CONTENT -->
+<div class="invoice-box" #invoiceBox>
+  <div class="header">
+    <div class="company-info">
+      <h2>{{ company.name }}</h2>
+      <p>{{ company.address }}<br>Email: {{ company.email }}</p>
+    </div>
+    <div class="invoice-details">
+      <h3>Invoice #{{ invoice.number }}</h3>
+      <p>Date: {{ invoice.date }}</p>
+      <p class="paid">{{ invoice.status }}</p>
+    </div>
+  </div>
+
+  <div class="buyer-info">
+    <h4>Billed To:</h4>
+    <p>
+      {{ buyer.name }}<br>
+      {{ buyer.email }}<br>
+      {{ buyer.phone }}
+    </p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item Description</th>
+        <th>Quantity</th>
+        <th>Unit Price (NGN)</th>
+        <th>Total (NGN)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.description }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.unitPrice | number }}</td>
+        <td>{{ item.quantity * item.unitPrice | number }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="summary">
+    <p><strong>Subtotal:</strong> ₦{{ subtotal | number }}</p>
+    <p><strong>VAT (7.5%):</strong> ₦{{ vat | number }}</p>
+    <p><strong>Total:</strong> ₦{{ total | number }}</p>
+  </div>
+</div>
+
+<!-- SUBMIT BUTTON -->
+<div class="text-center" style="text-align: center; margin-top: 2rem;">
+  <button (click)="submitInvoice()" class="submit-button">Send Invoice</button>
+</div>
